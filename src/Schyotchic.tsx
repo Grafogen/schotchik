@@ -1,38 +1,62 @@
 import React, {useState} from 'react';
 import {Button} from "./components/Button";
 
-type SchyotchicProps={
-    chislo:number
-    minusChislo:number
+
+type SchyotchicProps = {
+    chislo: number
+    minusChislo: number
+    go: boolean
+    setGo: (go: boolean) => void
 }
 
-//incTitle='inc' resetTitle='reset'
-export const Schyotchic = (props:SchyotchicProps) => {
-    const MinCount=props.minusChislo
-    const MaxCount=props.chislo
-    const [count, setCount] = useState<number>(MinCount)
+export const Schyotchic: React.FC<SchyotchicProps> = ({chislo, minusChislo, go, ...props}) => {
+
+    const [count, setCount] = useState<number>(minusChislo)
+
     const incHandler = () => {
-        if(count<=MaxCount)setCount(count + 1)
+        if (count <= chislo) setCount(count + 1)
     }
+
+
+    const counter = {
+        border: 'blue',
+        borderRadius: '15px',
+        width: '400px',
+        backgroundColor: '#342c94',
+        height: ' 100%',
+        margin: '0 auto',
+        display: go ? 'none' : 'flex',
+        justifyContent: 'center',
+        textAlign: 'center' as 'center',
+        flexDirection:'column' as'column',
+        flexWrap:'wrap-reverse' as 'wrap-reverse'
+    }
+
     const minusHandler = () => {
-        if(count<=MaxCount)setCount(count - 1)
+        if (count <= chislo) setCount(count - 1)
     }
     const resetHandler = () => {
-        setCount(MinCount)
+        setCount(minusChislo)
     }
-    const chislo = {
-        color: count === MaxCount ? 'red' : 'black',
+    const res = {
+        color: count === chislo ? 'red' : 'black',
+    }
+    const onClickGo = () => {
+        props.setGo(!go)
     }
     return (
-        <div className='counter'>
-            <h1 style={chislo} className='chislo'>
+        <div style={counter}>
+
+            <h1 style={res} className='chislo'>
                 {count}
             </h1>
             <div>
-                <Button title={true} disabled={count === MaxCount} onClick={incHandler}>!</Button>
-                <Button title={true} disabled={count === MinCount} onClick={minusHandler}>!</Button>
-                <Button title={false} disabled={count === MinCount} onClick={resetHandler}>!</Button>
+                <Button title={true} disabled={count === chislo} onClick={incHandler}>!</Button>
+                <Button title={true} disabled={count === minusChislo} onClick={minusHandler}>!</Button>
+                <Button title={false} disabled={count === minusChislo} onClick={resetHandler}>!</Button>
+                <button className='but' onClick={onClickGo}>В настройку</button>
             </div>
+
         </div>
     );
 };

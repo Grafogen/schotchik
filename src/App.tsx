@@ -4,13 +4,13 @@ import { Nastroika } from './components/Nastroika';
 import {Schyotchic} from "./Schyotchic";
 
 function App() {
-    let [chislo, setChislo] = useState(5)
-    let [minusChislo, setMinusChislo] = useState(0)
-
+    const [chislo, setChislo] = useState(5)
+    const [minusChislo, setMinusChislo] = useState(0)
+    const [go, setGo] = useState(false)
     return (
         <div className="App">
-            <Schyotchic minusChislo={minusChislo} chislo={chislo}/>
-            <Nastroika setChislo={setChislo} setMinusChislo={setMinusChislo} />
+            <Schyotchic go={go} setGo={setGo} minusChislo={minusChislo} chislo={chislo}/>
+            <Nastroika setGo={setGo} go={go}   setChislo={setChislo} setMinusChislo={setMinusChislo} />
         </div>
     );
 }

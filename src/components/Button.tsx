@@ -5,7 +5,7 @@ type ButtonProps={
     disabled:boolean,
     onClick:()=>void,
     children:React.ReactNode,
-    title:boolean
+    title:boolean|string
 }
 export const Button = (props:ButtonProps) => {
     return (
