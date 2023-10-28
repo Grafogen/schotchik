@@ -18,7 +18,7 @@ export const Schyotchic = (props:SchyotchicProps) => {
         if(count<=MaxCount)setCount(count - 1)
     }
     const resetHandler = () => {
-        setCount(0)
+        setCount(MinCount)
     }
     const chislo = {
         color: count === MaxCount ? 'red' : 'black',
